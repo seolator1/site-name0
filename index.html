@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HYUNDAI LIVART | PREMIUM NEWS ARCHIVE</title>
+    <title>HYUNDAI LIVART | NEWS ARCHIVE</title>
     
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     
@@ -15,7 +15,6 @@
             --point-color: #ff6b00; /* 리바트 오렌지 */
             --text-primary: #ffffff;
             --text-secondary: #888888;
-            --card-hover-bg: #1a1a1a;
         }
 
         body { 
@@ -23,80 +22,51 @@
             background-color: var(--bg-color);
             color: var(--text-primary);
             margin: 0;
-            padding: 80px 20px;
+            padding: 60px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             -webkit-font-smoothing: antialiased; /* 글씨를 더 선명하게 */
         }
 
-        /* 2. 헤더 디자인: 로고 애니메이션 및 타이포그래피 */
+        /* 2. 헤더 디자인: 타이포그래피 강조 */
         header {
             text-align: center;
-            margin-bottom: 100px;
+            margin-bottom: 80px;
             width: 100%;
             max-width: 800px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
-        /* [핵심] 현대리바트 로고 애니메이션 */
-        .logo-container {
-            width: 150px;
-            height: 50px;
-            margin-bottom: 30px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .logo-text {
-            font-size: 2.5rem;
-            font-weight: 900;
-            letter-spacing: -2px;
+        h1 { 
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -2px; /* 글자 간격 줄임 */
+            margin: 0;
             text-transform: uppercase;
-            color: var(--text-primary);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
-
-        .logo-livart {
+        h1 span { 
             color: var(--point-color);
             position: relative;
         }
-
-        /* 로고 밑에 움직이는 오렌지색 선 애니메이션 */
-        .logo-livart::after {
+        /* 오렌지색 글씨 밑에 은은한 네온 효과 */
+        h1 span::after {
             content: '';
             position: absolute;
             bottom: -5px;
             left: 0;
-            width: 0;
-            height: 4px;
+            width: 100%;
+            height: 3px;
             background-color: var(--point-color);
             box-shadow: 0 0 15px var(--point-color);
             border-radius: 2px;
-            animation: logo-underline 2s ease-out forwards;
-        }
-
-        @keyframes logo-underline {
-            0% { width: 0; left: 50%; }
-            100% { width: 100%; left: 0; }
         }
 
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--text-secondary);
             margin-top: 15px;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            font-weight: 300;
         }
 
         /* 3. 컨테이너: 그리드 레이아웃 */
@@ -105,68 +75,64 @@
             max-width: 800px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 25px;
         }
 
         /* 모바일용 1열 배치 */
         @media (max-width: 650px) {
             .container { grid-template-columns: 1fr; }
-            .logo-text { font-size: 2rem; }
-            .subtitle { font-size: 1rem; }
+            h1 { font-size: 2.2rem; }
         }
 
-        /* 4. 개별 뉴스 카드 디자인: 초미니멀 프리미엄 블랙 */
+        /* 4. 개별 뉴스 카드 디자인: 프리미엄 블랙 */
         .news-card {
             background-color: var(--card-bg);
             border: 1px solid #222; /* 아주 미세한 테두리 */
-            border-radius: 20px;
-            padding: 40px;
+            border-radius: 16px;
+            padding: 30px;
             text-decoration: none;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* 부드러운 애니메이션 */
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* 부드러운 애니메이션 */
             position: relative;
             overflow: hidden;
         }
 
         /* [핵심 마우스 효과] 카드가 커지면서 테두리가 오렌지색 네온으로 빛남 */
         .news-card:hover {
-            transform: translateY(-10px) scale(1.03);
+            transform: translateY(-8px) scale(1.02);
             border-color: var(--point-color);
-            background-color: var(--card-hover-bg);
-            box-shadow: 0 15px 40px rgba(255, 107, 0, 0.15);
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.2);
         }
 
         /* 카드 왼쪽 상단에 은은한 빛 효과 */
         .news-card::before {
             content: '';
             position: absolute;
-            top: -60px;
-            left: -60px;
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle, rgba(255,107,0,0.15) 0%, rgba(0,0,0,0) 70%);
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255,107,0,0.1) 0%, rgba(0,0,0,0) 70%);
             border-radius: 50%;
-            transition: all 0.5s ease;
-            opacity: 0;
+            transition: all 0.4s ease;
         }
 
         .news-card:hover::before {
-            opacity: 1;
-            transform: scale(1.2);
+            background: radial-gradient(circle, rgba(255,107,0,0.2) 0%, rgba(0,0,0,0) 70%);
         }
 
-        .card-top { margin-bottom: 25px; }
+        .card-top { margin-bottom: 20px; }
 
         .category {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             display: block;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             transition: all 0.3s ease;
         }
         
@@ -174,13 +140,12 @@
         .news-card:hover .category { color: var(--point-color); }
 
         .title {
-            font-size: 1.4rem;
-            font-weight: 800;
+            font-size: 1.3rem;
+            font-weight: 700;
             color: var(--text-primary);
             line-height: 1.4;
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
             display: block;
-            transition: all 0.3s ease;
         }
 
         /* [핵심 효과] 기사 읽기 버튼 대신 트렌디한 화살표 */
@@ -191,16 +156,16 @@
         }
 
         .arrow-icon {
-            width: 35px;
-            height: 35px;
+            width: 30px;
+            height: 30px;
             border: 2px solid #333;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #333;
-            font-size: 1.3rem;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
         }
 
         /* 마우스 올리면 화살표 버튼이 오렌지색으로 가득 참 */
@@ -208,7 +173,7 @@
             background-color: var(--point-color);
             border-color: var(--point-color);
             color: #000;
-            transform: translateX(8px);
+            transform: translateX(5px);
         }
 
     </style>
@@ -216,11 +181,7 @@
 <body>
 
     <header>
-        <div class="logo-container">
-            <div class="logo-text">
-                HYUNDAI <span class="logo-livart">LIVART</span>
-            </div>
-        </div>
+        <h1>HYUNDAI <span>LIVART</span></h1>
         <div class="subtitle">PREMIUM NEWS ARCHIVE</div>
     </header>
 
