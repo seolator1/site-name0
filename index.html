@@ -3,124 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>현대리바트 뉴스 보관함</title>
+    <title>HYUNDAI LIVART | PREMIUM NEWS ARCHIVE</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <style>
-        /* 1. 전체 배경 및 폰트 설정 */
+        :root {
+            --bg-color: #000000;
+            --card-bg: #111111;
+            --point-color: #ff6b00;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --card-hover-bg: #1a1a1a;
+        }
+
         body { 
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
+            font-family: 'Pretendard', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
             margin: 0;
-            padding: 40px 20px;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+            width: 100%;
+            max-width: 800px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* 2. 제목 섹션 */
-        h1 { 
-            font-size: 2rem;
-            color: #1a1a1a;
-            margin-bottom: 40px;
-            text-align: center;
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
         }
-        h1 span { color: #ff6b00; } /* 리바트 포인트 컬러 */
 
-        /* 3. 카드 레이아웃 (그리드) */
+        .logo-livart {
+            color: var(--point-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo-livart::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background-color: var(--point-color);
+            box-shadow: 0 0 15px var(--point-color);
+            animation: logo-underline 2s ease-out forwards;
+        }
+
+        @keyframes logo-underline {
+            0% { width: 0; left: 50%; }
+            100% { width: 100%; left: 0; }
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-top: 20px;
+        }
+
         .container {
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             display: grid;
-            grid-template-columns: 1fr 1fr; /* 2열 배치 */
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 25px;
         }
 
-        /* 모바일용 1열 배치 */
-        @media (max-width: 600px) {
-            .container { grid-template-columns: 1fr; }
-        }
-
-        /* 4. 개별 뉴스 카드 디자인 */
         .news-card {
-            background: white;
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
+            background-color: var(--card-bg);
+            border: 1px solid #222;
+            border-radius: 20px;
+            padding: 35px;
             text-decoration: none;
-            display: block;
-            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
         }
 
-        /* 마우스 올렸을 때 효과 */
         .news-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
-            border-color: #ff6b00;
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--point-color);
+            background-color: var(--card-hover-bg);
+            box-shadow: 0 15px 40px rgba(255, 107, 0, 0.2);
         }
 
         .category {
             font-size: 0.8rem;
-            color: #ff6b00;
-            font-weight: bold;
+            color: var(--text-secondary);
+            font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 8px;
+            letter-spacing: 2px;
             display: block;
+            margin-bottom: 15px;
         }
+        
+        .news-card:hover .category { color: var(--point-color); }
 
         .title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #222;
-            line-height: 1.4;
-            margin-bottom: 12px;
-            display: block;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.5;
+            letter-spacing: -0.5px;
         }
 
-        .go-btn {
-            font-size: 0.9rem;
-            color: #888;
+        .arrow-icon {
+            align-self: flex-end;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #333;
+            border-radius: 50%;
             display: flex;
             align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 1.4rem;
+            transition: all 0.4s ease;
         }
 
-        .go-btn::after {
-            content: ' →';
-            transition: margin-left 0.3s;
-        }
-
-        .news-card:hover .go-btn::after {
-            margin-left: 8px;
+        .news-card:hover .arrow-icon {
+            background-color: var(--point-color);
+            border-color: var(--point-color);
+            color: #000;
+            transform: translateX(10px);
         }
     </style>
 </head>
 <body>
 
-    <h1>현대<span>리바트</span> 뉴스 아카이브</h1>
+    <header>
+        <div class="logo-text">
+            HYUNDAI <span class="logo-livart">LIVART</span>
+        </div>
+        <div class="subtitle">PREMIUM NEWS ARCHIVE</div>
+    </header>
 
     <div class="container">
         <a href="./fnnews/" class="news-card">
-            <span class="category">Financial News</span>
-            <span class="title">현대리바트, 공간의 가치를 더하는 최신 소식</span>
-            <div class="go-btn">기사 읽기</div>
+            <div>
+                <span class="category">Financial News</span>
+                <span class="title">현대리바트, 공간의 가치를 더하는 최신 소식</span>
+            </div>
+            <div class="arrow-icon">→</div>
         </a>
 
         <a href="./sisajournal/" class="news-card">
-            <span class="category">Sisa Journal e</span>
-            <span class="title">가구 산업의 트렌드와 리바트의 전략 분석</span>
-            <div class="go-btn">기사 읽기</div>
+            <div>
+                <span class="category">Sisa Journal e</span>
+                <span class="title">가구 산업의 트렌드와 리바트의 전략 분석</span>
+            </div>
+            <div class="arrow-icon">→</div>
         </a>
 
         <a href="./asiae/" class="news-card">
-            <span class="category">Asia Economy</span>
-            <span class="title">시장 점유율 확대를 위한 리바트의 행보</span>
-            <div class="go-btn">기사 읽기</div>
+            <div>
+                <span class="category">Asia Economy</span>
+                <span class="title">시장 점유율 확대를 위한 리바트의 행보</span>
+            </div>
+            <div class="arrow-icon">→</div>
         </a>
 
         <a href="./mbn2/" class="news-card">
-            <span class="category">MBN Money</span>
-            <span class="title">B2B와 B2C를 아우르는 가구 솔루션</span>
-            <div class="go-btn">기사 읽기</div>
+            <div>
+                <span class="category">MBN Money</span>
+                <span class="title">B2B와 B2C를 아우르는 가구 솔루션</span>
+            </div>
+            <div class="arrow-icon">→</div>
+        </a>
+
+        <a href="./insight/" class="news-card">
+            <div>
+                <span class="category">Insight Korea</span>
+                <span class="title">디자인 경쟁력으로 가구 시장 승부수</span>
+            </div>
+            <div class="arrow-icon">→</div>
+        </a>
+
+        <a href="./chosun/" class="news-card">
+            <div>
+                <span class="category">Chosun Ilbo</span>
+                <span class="title">가구 시장 재편, 리바트의 시장 트렌드 선점</span>
+            </div>
+            <div class="arrow-icon">→</div>
+        </a>
+
+        <a href="./news1/" class="news-card">
+            <div>
+                <span class="category">News1</span>
+                <span class="title">토탈 인테리어 기업으로 도약하는 리바트</span>
+            </div>
+            <div class="arrow-icon">→</div>
         </a>
     </div>
 
